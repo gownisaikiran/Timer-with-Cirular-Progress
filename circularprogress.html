@@ -1,0 +1,249 @@
+<div class="circular-progress">
+  <div class="circular-progress-circle">
+    <div class="segment" id="d1" style="transform: rotate(0deg) skew(0deg)"></div>
+    <div class="segment" id="d2" style="transform: rotate(90deg) skew(0deg)"></div>    
+    <div class="segment" id="d3" style="transform: rotate(180deg) skew(0deg)"></div>
+    <div class="segment" id="d4" style="transform: rotate(270deg) skew(0deg)"></div>
+  </div>
+  <div class="circular-progress-inner"></div>
+  <div class="circular-progress-value">Days<br><span id="days" style="font-size: 45px;"></span></div>
+</div>
+<div class="circular-progress">
+  <div class="circular-progress-circle">
+    <div class="segment" id="h1" style="transform: rotate(0deg) skew(0deg)"></div>
+    <div class="segment" id="h2" style="transform: rotate(90deg) skew(0deg)"></div>    
+    <div class="segment" id="h3" style="transform: rotate(180deg) skew(0deg)"></div>
+    <div class="segment" id="h4" style="transform: rotate(270deg) skew(0deg)"></div>
+  </div>
+  <div class="circular-progress-inner"></div>
+  <div class="circular-progress-value">Hours<br><span id="hrs" style="font-size: 45px;"></span></div>
+</div>
+<div class="circular-progress">
+  <div class="circular-progress-circle">
+    <div class="segment" id="m1" style="transform: rotate(0deg) skew(0deg)"></div>
+    <div class="segment" id="m2" style="transform: rotate(90deg) skew(0deg)"></div>    
+    <div class="segment" id="m3" style="transform: rotate(180deg) skew(0deg)"></div>
+    <div class="segment" id="m4" style="transform: rotate(270deg) skew(0deg)"></div>
+  </div>
+  <div class="circular-progress-inner"></div>
+  <div class="circular-progress-value">Min<br><span id="mins" style="font-size: 45px;"></span></div>
+</div>
+<div class="circular-progress">
+  <div class="circular-progress-circle">
+    <div class="segment" id="s1" style="transform: rotate(0deg) skew(0deg)"></div>
+    <div class="segment" id="s2" style="transform: rotate(90deg) skew(0deg)"></div>    
+    <div class="segment" id="s3" style="transform: rotate(180deg) skew(0deg)"></div>
+    <div class="segment" id="s4" style="transform: rotate(270deg) skew(0deg)"></div>
+  </div>
+  <div class="circular-progress-inner"></div>
+  <div class="circular-progress-value">Sec<br><span id="sec" style="font-size: 45px;"></span></div>
+</div>
+
+
+<style>
+                  @media screen and (min-width:768px){
+                    .circular-progress {
+                      position: relative;
+                      display: inline-block;
+                      margin-right: 20px;
+                    }
+
+                    .circular-progress-circle {
+                      position: relative;
+                      width: 100px;
+                      height: 100px;
+                      background: transparent;
+                      border-radius: 50%;
+                      overflow: hidden;
+                    }
+
+                    .segment {
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      width: 100vw;
+                      height: 100vw;
+                      background: #b30324;;
+                      transform-origin: 0 0;
+                    }
+
+                    .circular-progress-inner {
+                      position: absolute;
+                      left: 50%;
+                      top: 50%;
+                      width: 95px;
+                      height: 95px;
+                      transform: translateX(-50%) translateY(-50%);
+                      background: #fff;
+                      border-radius: 50%;
+                      /*box-shadow: inset rgba(34, 36, 38, 0.15) 0px 0px 3px 2px; */
+                    }
+
+                    .circular-progress-value {
+                      position: absolute;
+                      font-size: 100%;
+                      font-family: Roboto;
+                      font-weight: bold;
+                      left: 50%;
+                      top: 50%;
+                      transform: translateX(-50%) translateY(-50%);
+                      text-align: center;
+                      color: #010177;
+                    }
+                  }
+</style>
+
+<script>
+// var countDownDate = <?php echo strtotime("$date $h:$m:$s" ) ?> * 1000;
+var countDownDate = 1625774400 * 1000;
+// var now = <?php echo time(); ?> * 1000;
+var now = 1620971709 * 1000;
+// Update the count down every 1 second
+var x = setInterval(function() {
+now = now + 1000;
+// Find the distance between now an the count down date
+var distance = countDownDate - now;
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+// Output the result in an element with id="demo"
+// document.getElementById("demo").innerHTML = days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+document.getElementById("days").innerHTML = days;
+// document.getElementById("d").style.tranform = days;
+document.getElementById("hrs").innerHTML = hours;
+document.getElementById("mins").innerHTML = minutes;
+document.getElementById("sec").innerHTML = seconds;
+// Seconds
+if(seconds>45 && seconds<60){
+  s_degree = ((60-seconds)*6);
+  document.getElementById("s4").setAttribute("style","transform: rotate(270deg) skew("+s_degree+"deg)");
+  document.getElementById("s3").setAttribute("style","transform: rotate(180deg) skew(0deg)");
+  document.getElementById("s2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("s1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(seconds>30 && seconds<=45){
+  s_degree = ((45-seconds)*6);
+  document.getElementById("s4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("s3").setAttribute("style","transform: rotate(180deg) skew("+s_degree+"deg)");
+  document.getElementById("s2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("s1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(seconds>15 && seconds<=30){
+  s_degree = ((30-seconds)*6);
+  document.getElementById("s4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("s3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("s2").setAttribute("style","transform: rotate(90deg) skew("+s_degree+"deg)");
+  document.getElementById("s1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(seconds>0 && seconds<=15){
+  s_degree = ((15-seconds)*6);
+  s_degree = (seconds==0) ? 90 : s_degree;
+  document.getElementById("s4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("s3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("s2").setAttribute("style","transform: rotate(90deg) skew(90deg)");
+  document.getElementById("s1").setAttribute("style","transform: rotate(0deg) skew("+s_degree+"deg)");
+}
+// Minutes
+if(minutes>45 && minutes<60){
+  m_degree = ((60-minutes)*6);
+  document.getElementById("m4").setAttribute("style","transform: rotate(270deg) skew("+m_degree+"deg)");
+  document.getElementById("m3").setAttribute("style","transform: rotate(180deg) skew(0deg)");
+  document.getElementById("m2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("m1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(minutes>30 && minutes<=45){
+  m_degree = ((45-minutes)*6);
+  document.getElementById("m4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("m3").setAttribute("style","transform: rotate(180deg) skew("+m_degree+"deg)");
+  document.getElementById("m2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("m1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(minutes>15 && minutes<=30){
+  m_degree = ((30-minutes)*6);
+  document.getElementById("m4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("m3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("m2").setAttribute("style","transform: rotate(90deg) skew("+m_degree+"deg)");
+  document.getElementById("m1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(minutes>0 && minutes<=15){
+  m_degree = ((15-minutes)*6);
+  m_degree = (minutes==0) ? 90 : m_degree;
+  document.getElementById("m4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("m3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("m2").setAttribute("style","transform: rotate(90deg) skew(90deg)");
+  document.getElementById("m1").setAttribute("style","transform: rotate(0deg) skew("+m_degree+"deg)");
+}
+// Hours
+if(hours>18 && hours<24){
+  h_degree = ((24-hours)*15);
+  document.getElementById("h4").setAttribute("style","transform: rotate(270deg) skew("+h_degree+"deg)");
+  document.getElementById("h3").setAttribute("style","transform: rotate(180deg) skew(0deg)");
+  document.getElementById("h2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("h1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(hours>12 && hours<=18){
+  h_degree = ((18-hours)*15);
+  document.getElementById("h4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("h3").setAttribute("style","transform: rotate(180deg) skew("+h_degree+"deg)");
+  document.getElementById("h2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("h1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(hours>6 && hours<=12){
+  h_degree = ((12-hours)*15);
+  document.getElementById("h4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("h3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("h2").setAttribute("style","transform: rotate(90deg) skew("+h_degree+"deg)");
+  document.getElementById("h1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(hours>0 && hours<=6){
+  h_degree = ((6-hours)*15);
+  h_degree = (hours==0) ? 90 : h_degree;
+  document.getElementById("h4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("h3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("h2").setAttribute("style","transform: rotate(90deg) skew(90deg)");
+  document.getElementById("h1").setAttribute("style","transform: rotate(0deg) skew("+h_degree+"deg)");
+}
+
+
+// Days
+if(days>270 && days<360){
+  d_degree = ((360-days));
+  document.getElementById("d4").setAttribute("style","transform: rotate(270deg) skew("+d_degree+"deg)");
+  document.getElementById("d3").setAttribute("style","transform: rotate(180deg) skew(0deg)");
+  document.getElementById("d2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("d1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(days>180 && days<=270){
+  d_degree = ((270-days));
+  document.getElementById("d4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("d3").setAttribute("style","transform: rotate(180deg) skew("+d_degree+"deg)");
+  document.getElementById("d2").setAttribute("style","transform: rotate(90deg) skew(0deg)");
+  document.getElementById("d1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(days>90 && days<=180){
+  d_degree = ((180-days));
+  document.getElementById("d4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("d3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("d2").setAttribute("style","transform: rotate(90deg) skew("+d_degree+"deg)");
+  document.getElementById("d1").setAttribute("style","transform: rotate(0deg) skew(0deg)");
+}
+if(days>0 && days<=90){
+  d_degree = ((90-days));
+  d_degree = (days==0) ? 90 : d_degree;
+  document.getElementById("d4").setAttribute("style","transform: rotate(270deg) skew(90deg)");
+  document.getElementById("d3").setAttribute("style","transform: rotate(180deg) skew(90deg)");
+  document.getElementById("d2").setAttribute("style","transform: rotate(90deg) skew(90deg)");
+  document.getElementById("d1").setAttribute("style","transform: rotate(0deg) skew("+d_degree+"deg)");
+}
+// document.getElementById("s4").setAttribute("style","transform: rotate(270deg) skew(50deg)");
+// If the count down is over, write some text 
+if (distance < 0) {
+  clearInterval(x);
+  document.getElementById("countdown-timer").style.display = "none";
+}
+    
+}, 1000);
+
+</script>
